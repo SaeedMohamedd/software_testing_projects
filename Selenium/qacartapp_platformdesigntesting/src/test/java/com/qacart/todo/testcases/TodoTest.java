@@ -3,6 +3,7 @@ package com.qacart.todo.testcases;
 import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
 import com.qacart.todo.pages.LoginPage;
+import com.qacart.todo.pages.NewTodoPage;
 import com.qacart.todo.pages.TodoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -25,9 +26,12 @@ public class TodoTest extends BaseTest {
         TodoPage todopage =new TodoPage(driver);
         todopage.isWelcomeDisplay();
         todopage.clickonplusbutton();
-        todopage.fillthenewtasktextfield("Learn Selenium");
-        todopage.submitnewtask();
-        Assert.assertEquals(todopage.getnewtodotext(),"Learn Selenium");
+
+        NewTodoPage newtodopage = new NewTodoPage(driver);
+
+        newtodopage.fillthenewtasktextfield("Learn Selenium");
+        newtodopage.submitnewtask();
+        Assert.assertEquals(newtodopage.getnewtodotext(),"Learn Selenium");
     }
 
 
@@ -41,11 +45,15 @@ public class TodoTest extends BaseTest {
         TodoPage todopage =new TodoPage(driver);
         todopage.isWelcomeDisplay();
         todopage.clickonplusbutton();
-        todopage.fillthenewtasktextfield("Learn Selenium");
-        todopage.submitnewtask();
 
-        todopage.deletetodotask();
-        String actualResult = todopage.getnotodotext();
+
+        NewTodoPage newtodopage = new NewTodoPage(driver);
+
+        newtodopage.fillthenewtasktextfield("Learn Selenium");
+        newtodopage.submitnewtask();
+
+        newtodopage.deletetodotask();
+        String actualResult = newtodopage.getnotodotext();
         Assert.assertEquals(actualResult,"No Available Todos");
     }
 }

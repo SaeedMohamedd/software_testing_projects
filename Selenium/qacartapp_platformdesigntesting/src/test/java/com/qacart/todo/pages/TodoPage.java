@@ -19,51 +19,18 @@ public class TodoPage extends BasePage {
     @FindBy(css="[data-testid=\"add\"]")
     WebElement addtodobutton ;
 
-    @FindBy(css= "[data-testid=\"new-todo\"]")
-            WebElement newtextfieldfornewtodo;
-
-    @FindBy(css= "[data-testid=\"submit-newTask\"]")
-            WebElement submimtnewtaskbutton;
-
-    @FindBy(css ="[data-testid=\"todo-item\"]" )
-    WebElement newtodoitem;
-
-    @FindBy(css="[data-testid=\"delete\"]")
-            private  WebElement deletetodotaskbutton;
-
-    @FindBy(css="[data-testid=\"no-todos\"]")
-            private  WebElement notodotext;
 
 
     public void clickonplusbutton()
     {
         addtodobutton.click();
     }
-    public void fillthenewtasktextfield(String newtasktext)
-    {
-        newtextfieldfornewtodo.sendKeys(newtasktext);
-    }
-    public void submitnewtask()
-    {
-        submimtnewtaskbutton.click();
-    }
+
 
     public boolean isWelcomeDisplay()
     {
         return  welcomemessage.isDisplayed();
     }
 
-    public String getnewtodotext()
-    {
-        return newtodoitem.getText();
-    }
-    public void deletetodotask()
-    {
-        deletetodotaskbutton.click();
-    }
-    public String getnotodotext()
-    {
-        return notodotext.getText();
-    }
 
 }
