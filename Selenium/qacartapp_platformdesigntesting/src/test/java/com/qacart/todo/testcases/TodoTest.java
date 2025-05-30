@@ -2,6 +2,8 @@ package com.qacart.todo.testcases;
 
 import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
+import com.qacart.todo.pages.LoginPage;
+import com.qacart.todo.pages.TodoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,28 +18,34 @@ public class TodoTest extends BaseTest {
     @Test
     public void ShouldBeAbleToAddNewTodo(){
 
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys("saeed@tester.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("Tester@2025");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
-        driver.findElement(By.cssSelector("[data-testid=\"add\"]")).click();
-        driver.findElement(By.cssSelector("[data-testid=\"new-todo\"]")).sendKeys("Learn Selenium");
-        driver.findElement(By.cssSelector("[data-testid=\"submit-newTask\"]")).click();
-        String actualResult = driver.findElement(By.cssSelector("[data-testid=\"todo-item\"]")).getText();
-        Assert.assertEquals(actualResult,"Learn Selenium");
+        LoginPage loginpage=new LoginPage(driver);
+        loginpage.LoadURLPage();
+        loginpage.login("saeed@tester.com","Tester@2025");
+
+        TodoPage todopage =new TodoPage(driver);
+        todopage.isWelcomeDisplay();
+        todopage.clickonplusbutton();
+        todopage.fillthenewtasktextfield("Learn Selenium");
+        todopage.submitnewtask();
+        Assert.assertEquals(todopage.getnewtodotext(),"Learn Selenium");
     }
 
 
 
     @Test
     public void ShouldBeAbleToDeleteTodo(){
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys("saeed@tester.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("Tester@2025");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
-        driver.findElement(By.cssSelector("[data-testid=\"add\"]")).click();
-        driver.findElement(By.cssSelector("[data-testid=\"new-todo\"]")).sendKeys("Learn Selenium");
-        driver.findElement(By.cssSelector("[data-testid=\"submit-newTask\"]")).click();
-        driver.findElement(By.cssSelector("[data-testid=\"delete\"]")).click();
-        String actualResult = driver.findElement(By.cssSelector("[data-testid=\"no-todos\"]")).getText();
+        LoginPage loginpage=new LoginPage(driver);
+        loginpage.LoadURLPage();
+        loginpage.login("saeed@tester.com","Tester@2025");
+
+        TodoPage todopage =new TodoPage(driver);
+        todopage.isWelcomeDisplay();
+        todopage.clickonplusbutton();
+        todopage.fillthenewtasktextfield("Learn Selenium");
+        todopage.submitnewtask();
+
+        todopage.deletetodotask();
+        String actualResult = todopage.getnotodotext();
         Assert.assertEquals(actualResult,"No Available Todos");
     }
 }

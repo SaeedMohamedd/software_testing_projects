@@ -2,6 +2,8 @@ package com.qacart.todo.testcases;
 
 import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
+import com.qacart.todo.pages.LoginPage;
+import com.qacart.todo.pages.TodoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +18,10 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void ShouldBeLoginWithEmailAndPassword(){
-        driver.findElement(By.cssSelector("[data-testid=\"email\"]")).sendKeys("saeed@tester.com");
-        driver.findElement(By.cssSelector("[data-testid=\"password\"]")).sendKeys("Tester@2025");
-        driver.findElement(By.cssSelector("[data-testid=\"submit\"]")).click();
-        boolean isWelcomeDisplayed = driver.findElement(By.cssSelector("[data-testid=\"welcome\"]")).isDisplayed();
-        Assert.assertTrue(isWelcomeDisplayed);
+        LoginPage loginobj = new LoginPage(driver);
+        loginobj.LoadURLPage();
+        loginobj.login("saeed@tester.com","Tester@2025");
+        TodoPage todopage=new TodoPage(driver);
+        Assert.assertTrue(todopage.isWelcomeDisplay());
     }
 }
