@@ -20,8 +20,7 @@ public class LoginTest extends BaseTest {
     public void ShouldBeLoginWithEmailAndPassword(){
         LoginPage loginobj = new LoginPage(driver);
         loginobj.LoadURLPage();
-        loginobj.login("saeed@tester.com","Tester@2025");
-        TodoPage todopage=new TodoPage(driver);
+        TodoPage todopage=loginobj.login("saeed@tester.com","Tester@2025");
         Assert.assertTrue(todopage.isWelcomeDisplay());
     }
 }

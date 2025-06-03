@@ -21,9 +21,10 @@ public class TodoPage extends BasePage {
 
 
 
-    public void clickonplusbutton()
+    public NewTodoPage clickonplusbutton()
     {
         addtodobutton.click();
+        return new NewTodoPage(driver);
     }
 
 

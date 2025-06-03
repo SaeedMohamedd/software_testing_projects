@@ -21,13 +21,10 @@ public class TodoTest extends BaseTest {
 
         LoginPage loginpage=new LoginPage(driver);
         loginpage.LoadURLPage();
-        loginpage.login("saeed@tester.com","Tester@2025");
+        TodoPage todopage =loginpage.login("saeed@tester.com","Tester@2025");
 
-        TodoPage todopage =new TodoPage(driver);
         todopage.isWelcomeDisplay();
-        todopage.clickonplusbutton();
-
-        NewTodoPage newtodopage = new NewTodoPage(driver);
+        NewTodoPage newtodopage =  todopage.clickonplusbutton();
 
         newtodopage.fillthenewtasktextfield("Learn Selenium");
         newtodopage.submitnewtask();
@@ -36,18 +33,14 @@ public class TodoTest extends BaseTest {
 
 
 
-    @Test
+    @Test(enabled = true)
     public void ShouldBeAbleToDeleteTodo(){
         LoginPage loginpage=new LoginPage(driver);
         loginpage.LoadURLPage();
-        loginpage.login("saeed@tester.com","Tester@2025");
+        TodoPage todopage =loginpage.login("saeed@tester.com","Tester@2025");
 
-        TodoPage todopage =new TodoPage(driver);
         todopage.isWelcomeDisplay();
-        todopage.clickonplusbutton();
-
-
-        NewTodoPage newtodopage = new NewTodoPage(driver);
+        NewTodoPage newtodopage =  todopage.clickonplusbutton();
 
         newtodopage.fillthenewtasktextfield("Learn Selenium");
         newtodopage.submitnewtask();

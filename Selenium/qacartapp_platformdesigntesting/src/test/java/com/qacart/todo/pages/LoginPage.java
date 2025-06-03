@@ -23,12 +23,13 @@ public class LoginPage extends BasePage {
     @FindBy(css = "[data-testid=\"submit\"]")
     WebElement submit;
 
-     public void login(String email, String password)
+     public TodoPage login(String email, String password)
      {
          emailInput.sendKeys(email);
          passwordInput.sendKeys(password);
-
          submit.click();
+       return  new TodoPage(driver);
+
      }
 
 }
