@@ -28,22 +28,25 @@ public class NewTodoPage extends BasePage {
 
 
 
-    public void fillthenewtasktextfield(String newtasktext)
+    public NewTodoPage fillthenewtasktextfield(String newtasktext)
     {
         newtextfieldfornewtodo.sendKeys(newtasktext);
+        return this;
     }
-    public void submitnewtask()
+    public NewTodoPage submitnewtask()
     {
         submimtnewtaskbutton.click();
+        return this ;
     }
 
     public String getnewtodotext()
     {
         return newtodoitem.getText();
     }
-    public void deletetodotask()
+    public NewTodoPage deletetodotask()
     {
         deletetodotaskbutton.click();
+        return this;
     }
     public String getnotodotext()
     {

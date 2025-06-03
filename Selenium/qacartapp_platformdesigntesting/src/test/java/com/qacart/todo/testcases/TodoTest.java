@@ -20,15 +20,12 @@ public class TodoTest extends BaseTest {
     public void ShouldBeAbleToAddNewTodo(){
 
         LoginPage loginpage=new LoginPage(driver);
-        loginpage.LoadURLPage();
-        TodoPage todopage =loginpage.login("saeed@tester.com","Tester@2025");
-
-        todopage.isWelcomeDisplay();
-        NewTodoPage newtodopage =  todopage.clickonplusbutton();
-
-        newtodopage.fillthenewtasktextfield("Learn Selenium");
-        newtodopage.submitnewtask();
-        Assert.assertEquals(newtodopage.getnewtodotext(),"Learn Selenium");
+        String newtodotext=
+        loginpage
+                .LoadURLPage()
+                .login("saeed@tester.com","Tester@2025")
+                .clickonplusbutton().fillthenewtasktextfield("Learn Selenium").submitnewtask().getnewtodotext();
+        Assert.assertEquals(newtodotext,"Learn Selenium");
     }
 
 
@@ -36,17 +33,16 @@ public class TodoTest extends BaseTest {
     @Test(enabled = true)
     public void ShouldBeAbleToDeleteTodo(){
         LoginPage loginpage=new LoginPage(driver);
-        loginpage.LoadURLPage();
-        TodoPage todopage =loginpage.login("saeed@tester.com","Tester@2025");
+        String actualResult =
+        loginpage
+                .LoadURLPage()
+                .login("saeed@tester.com","Tester@2025")
+                .clickonplusbutton()
+                .fillthenewtasktextfield("Learn Selenium")
+                .submitnewtask()
+                .deletetodotask()
+                .getnotodotext();
 
-        todopage.isWelcomeDisplay();
-        NewTodoPage newtodopage =  todopage.clickonplusbutton();
-
-        newtodopage.fillthenewtasktextfield("Learn Selenium");
-        newtodopage.submitnewtask();
-
-        newtodopage.deletetodotask();
-        String actualResult = newtodopage.getnotodotext();
         Assert.assertEquals(actualResult,"No Available Todos");
     }
 }

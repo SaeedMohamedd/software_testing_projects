@@ -12,8 +12,5 @@ public class BasePage {
         PageFactory.initElements(driver,this);
 
     }
-    public void LoadURLPage()
-    {
-        driver.get("https://qacart-todo.herokuapp.com/");
-    }
+
 }

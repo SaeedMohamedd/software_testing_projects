@@ -19,8 +19,11 @@ public class LoginTest extends BaseTest {
     @Test
     public void ShouldBeLoginWithEmailAndPassword(){
         LoginPage loginobj = new LoginPage(driver);
-        loginobj.LoadURLPage();
-        TodoPage todopage=loginobj.login("saeed@tester.com","Tester@2025");
-        Assert.assertTrue(todopage.isWelcomeDisplay());
+        boolean  isWelcomeDisplay =
+                loginobj
+                        .LoadURLPage()
+                        .login("saeed@tester.com","Tester@2025")
+                        .isWelcomeDisplay();
+        Assert.assertTrue(isWelcomeDisplay);
     }
 }
