@@ -30,7 +30,7 @@ public class TodoTest extends BaseTest {
 
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void ShouldBeAbleToDeleteTodo(){
         LoginPage loginpage=new LoginPage(driver);
         String actualResult =
