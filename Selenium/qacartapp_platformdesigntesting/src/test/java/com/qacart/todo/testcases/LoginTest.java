@@ -4,6 +4,7 @@ import com.qacart.todo.base.BaseTest;
 import com.qacart.todo.factory.DriverFactory;
 import com.qacart.todo.pages.LoginPage;
 import com.qacart.todo.pages.TodoPage;
+import com.qacart.todo.utils.ConfigUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,11 +20,11 @@ public class LoginTest extends BaseTest {
     @Test
     public void ShouldBeLoginWithEmailAndPassword(){
         LoginPage loginobj = new LoginPage(driver);
-        boolean  isWelcomeDisplay =
+        boolean  WelcomeDisplay =
                 loginobj
                         .LoadURLPage()
-                        .login("saeed@tester.com","Tester@2025")
+                        .login(ConfigUtils.getInstance().getEmail(), ConfigUtils.getInstance().getPassword())
                         .isWelcomeDisplay();
-        Assert.assertTrue(isWelcomeDisplay);
+        Assert.assertTrue(WelcomeDisplay);
     }
 }
